@@ -1,74 +1,46 @@
-# AI Video Pipeline (2-Minute Long Video Workflow)
+# AI Video Pipeline — 2分钟长视频全免费端到端工作流
 
-一套专为 **2分钟左右（100s~150s）长视频** 打造的 **100% 全免费、模块化 AI 视频生成工作流**。
+目标：100% 全免费，2 分钟左右（100-150 秒）长视频，拆成 15-22 个 4-6 秒分镜，先配音再对画面，最后本地 FFmpeg 拼接。
 
-支持直接在 **Muse** 或本地通过 Python + FFmpeg 自动化运行，包含剧本创作、分镜拆解、提示词适配、免费广播级配音、音画自动对齐与最终剪辑导出。
+## 目录
 
----
+- `pipeline_dag.json` — 7 个节点的拓扑与数据传递配置（DAG）
+- `scripts/split_storyboard.py` — Node 1+2：剧本 → storyboard.json
+- `scripts/tts_edge.py` — Node 4：edge-tts 配音，输出 shot_XX.mp3 + durations.json
+- `scripts/prompt_adapter.py` — Node 5：Kling / 即梦 / MiniMax 提示词编译
+- `scripts/stitch_ffmpeg.py` — Node 6：FFmpeg 统一转码 + 拼接 + 混音
+- `scripts/jianying_export.py` — Node 7：剪映草稿骨架 draft_content.json
+- `example_2min/` — 完整 2 分钟示例：剧本 + storyboard.json
 
-## 🌟 核心特性
+## 跑一遍（示例）
 
-- **100% 零成本闭环**：所有环节均使用开源库（`edge-tts`、`ffmpeg`）或平台每日免费积分（快手可灵、豆包即梦、MiniMax海螺、LiblibAI），无需购买任何付费 API。
-- **长视频分治架构**：将 2 分钟长视频精准拆解为 16~20 个 4~6 秒独立镜头，彻底避免单次长生成带来的画面崩坏与动作畸变。
-- **音画精准对齐**：先生成毫秒级精度的 TTS 旁白音频，再基于真实音频时长驱动视频拼接与微调。
-- **专业级混音标准**：旁白人声自动标准化至 `-14 dB`，背景音乐自动闪避压制至 `-22 dB`。
-- **剪映草稿一键导出**：支持输出剪映/CapCut 工程草稿文件，一键自动打智能黄色高亮花字字幕。
-
----
-
-## 📂 项目结构
-
-```text
-ai-video-pipeline/
-├── pipeline_dag.json                 # Muse 工作流节点定义与数据流转拓扑
-├── README.md                         # 项目使用说明
-├── scripts/
-│   ├── 01_script_to_storyboard.py    # 剧本快速拆解为分镜 JSON
-│   ├── 02_prompt_compiler.py         # 分镜 JSON -> 多模型生图/生视频 Prompt 编译
-│   ├── 03_free_tts_generator.py      # 微软 Edge-TTS 免费批量配音脚本
-│   ├── 04_ffmpeg_auto_stitch.py      # FFmpeg 自动对齐、混音与成片渲染
-│   └── 05_jianying_draft_export.py   # 导出为剪映电脑版草稿
-└── example_2min/
-    ├── sample_script_2min.md         # 2分钟标准剧本示例（成长与创业认知）
-    └── sample_storyboard.json        # 对应 18 镜头的完整结构化分镜表
-```
-
----
-
-## 🚀 快速上手
-
-### 1. 环境准备
-确保本机已安装 Python 3.8+ 及 FFmpeg：
 ```bash
+cd ~/workspace/ai-video-pipeline
 pip install edge-tts
-# 检查 ffmpeg
-ffmpeg -version
+python3 scripts/split_storyboard.py --script example_2min/script.md --out example_2min/storyboard.json --shots 20
+python3 scripts/tts_edge.py --storyboard example_2min/storyboard.json --out example_2min/assets/audios
+# Node 3/5：按 storyboard.json + prompts 生成关键帧和视频片段，放到 example_2min/assets/videos/shot_XX.mp4
+python3 scripts/prompt_adapter.py --storyboard example_2min/storyboard.json --out example_2min/prompts
+python3 scripts/stitch_ffmpeg.py --videos example_2min/assets/videos --audios example_2min/assets/audios --out example_2min/output/final_video_2min.mp4
+python3 scripts/jianying_export.py --video example_2min/output/final_video_2min.mp4 --storyboard example_2min/storyboard.json --out example_2min/draft_content.json
 ```
 
-### 2. 执行完整流水线
+## 硬性约束（别绕过）
 
-#### Step 1: 拆解分镜
-```bash
-python scripts/01_script_to_storyboard.py --input example_2min/sample_script_2min.md --output workspace/storyboard.json
-```
+1. 2 分钟视频严禁单次整片生成，必须拆 15-22 个 4-6 秒分镜。
+2. 先锁定人物/产品参考图，再走图生视频 I2V / 带参考 R2V，保证主体一致。
+3. 先生成 TTS 配音，按音频实际毫秒时长反向校准视频时间线。
+4. 全免费：开源 + 本地 + 每日免费额度，禁止付费 API。Kling / 即梦 / MiniMax 的免费额度以官网为准，会变。
+5. AI 画面只当 B-roll / 氛围镜头，不当实拍；发布时勾选 AI 生成；屏幕、笔记本上的文字要虚化，别留乱码和假数据。
 
-#### Step 2: 编译生图/生视频提示词
-```bash
-python scripts/02_prompt_compiler.py --input workspace/storyboard.json --model jimeng
-```
+## GitHub 说明（2026-11-23 核查，已推送）
 
-#### Step 3: 批量生成免费配音
-```bash
-python scripts/03_free_tts_generator.py --input workspace/storyboard.json --output-dir workspace/audios/
-```
+仓库：`fanpeter853-glitch/ai-video-pipeline`（Public，main 分支）
+https://github.com/fanpeter853-glitch/ai-video-pipeline
 
-#### Step 4: 自动化剪辑成片
-将生成的视频片段放入 `workspace/videos/`，背景音乐放入 `workspace/bgm.mp3`：
-```bash
-python scripts/04_ffmpeg_auto_stitch.py --storyboard workspace/storyboard.json --video-dir workspace/videos/ --audio-dir workspace/audios/ --bgm workspace/bgm.mp3 --output workspace/final_output.mp4
-```
+主示例是 Peter 的真实版：`example_2min/`（“先做最小的一步”，462 字、20 镜、瓷砖胶客户问价）。
+通用备选示例保留在仓库里：`example_2min/sample_script_2min.md` 和 `sample_storyboard.json`
+（“磨刀不误砍柴工”主题，18 镜），不要和主示例混用。
 
----
-
-## 📄 License
-MIT License. Created by [fanpeter853-glitch](https://github.com/fanpeter853-glitch).
+字段统一：分镜台词同时写 `voiceover_text` 和 `voiceover` 两个字段，
+本地脚本用 `voiceover_text`，仓库另一套编号脚本用 `voiceover`，两者内容一致。

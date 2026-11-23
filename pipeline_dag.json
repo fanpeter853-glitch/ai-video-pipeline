@@ -1,102 +1,237 @@
 {
-  "name": "ai-video-pipeline",
-  "version": "1.0.0",
-  "description": "100% Free Modular Pipeline for 2-Minute AI Video Generation (Muse & GitHub Integration)",
-  "metadata": {
-    "target_duration_seconds": 120,
-    "target_shots_count": 18,
+  "pipeline": "AI Video Pipeline — 2分钟长视频全免费端到端工作流",
+  "version": "1.0",
+  "owner": "Peter",
+  "language": "zh-CN",
+  "target": {
+    "duration_sec": 120,
+    "duration_range_sec": [
+      100,
+      150
+    ],
     "resolution": "1080x1920",
-    "aspect_ratio": "9:16",
+    "aspect": "9:16",
     "fps": 30,
-    "cost_tier": "100% Free / Zero API Cost",
-    "author": "fanpeter853-glitch"
+    "codec": "H.264",
+    "cost": "100% free: 开源工具 + 本地算力 + 每日免费额度，禁止付费API"
   },
   "nodes": [
     {
-      "id": "node_01_script_engine",
-      "name": "2-Minute Script Engine",
-      "type": "llm_text_generation",
-      "description": "Generates 400-500 words structured script with emotional rhythm and 3s hook",
-      "inputs": ["theme", "target_audience", "tone_style"],
-      "outputs": ["script_text", "script_metadata"],
-      "config": {
-        "target_word_count": 480,
-        "target_duration": 120,
-        "hook_window": "0-3s"
-      }
-    },
-    {
-      "id": "node_02_storyboard_engine",
-      "name": "Storyboard & Shot Breakdown Engine",
-      "type": "python_script",
-      "script_path": "scripts/01_script_to_storyboard.py",
-      "description": "Splits 2-minute script into 16-20 cohesive shots (4-6s per shot)",
-      "inputs": ["node_01_script_engine.outputs.script_text"],
-      "outputs": ["storyboard_json"],
-      "depends_on": ["node_01_script_engine"]
-    },
-    {
-      "id": "node_03_prompt_compiler",
-      "name": "Multi-Model Prompt Adapter",
-      "type": "python_script",
-      "script_path": "scripts/02_prompt_compiler.py",
-      "description": "Compiles storyboard shots into optimized prompts for Kling, Jimeng, and MiniMax",
-      "inputs": ["node_02_storyboard_engine.outputs.storyboard_json"],
-      "outputs": ["compiled_prompts"],
-      "depends_on": ["node_02_storyboard_engine"]
-    },
-    {
-      "id": "node_04_free_tts_engine",
-      "name": "Free Broadcast TTS Audio Engine",
-      "type": "python_script",
-      "script_path": "scripts/03_free_tts_generator.py",
-      "description": "Generates broadcast-grade voiceover files using Microsoft Edge-TTS (0 cost, no API key)",
-      "inputs": ["node_02_storyboard_engine.outputs.storyboard_json"],
-      "outputs": ["audio_files", "timeline_durations"],
-      "config": {
-        "voice": "zh-CN-YunxiNeural",
-        "rate": "+0%",
-        "volume": "+0%"
-      },
-      "depends_on": ["node_02_storyboard_engine"]
-    },
-    {
-      "id": "node_05_video_collector",
-      "name": "Video Segment Collector",
-      "type": "manual_or_api_ingest",
-      "description": "Ingests generated 4-6s video clips from free daily quota tools",
-      "inputs": ["node_03_prompt_compiler.outputs.compiled_prompts"],
-      "outputs": ["video_clip_paths"],
-      "depends_on": ["node_03_prompt_compiler"]
-    },
-    {
-      "id": "node_06_ffmpeg_auto_stitch",
-      "name": "FFmpeg Auto-Alignment & Mix Engine",
-      "type": "python_script",
-      "script_path": "scripts/04_ffmpeg_auto_stitch.py",
-      "description": "Auto-trims, normalizes audio to -14dB, ducks BGM to -22dB, and renders seamless 1080p video",
+      "id": "node1_script",
+      "name": "Node 1：2分钟剧本与情绪节拍拆解",
+      "type": "Script Engine",
       "inputs": [
-        "node_04_free_tts_engine.outputs.audio_files",
-        "node_05_video_collector.outputs.video_clip_paths"
+        "theme",
+        "persona",
+        "audience"
       ],
-      "outputs": ["final_video_mp4"],
-      "config": {
-        "voice_lufs": -14.0,
-        "bgm_volume_db": -22.0,
-        "output_codec": "libx264",
-        "audio_codec": "aac"
+      "outputs": [
+        "script.md",
+        "script.json"
+      ],
+      "spec": {
+        "length_chars": "400-500",
+        "pace_chars_per_min": 240,
+        "beats": [
+          {
+            "range": "00:00-00:05",
+            "name": "黄金前3秒反常识钩子"
+          },
+          {
+            "range": "00:05-00:30",
+            "name": "痛点场景共鸣与误区揭露"
+          },
+          {
+            "range": "00:30-01:15",
+            "name": "核心认知提升/干货解法展开"
+          },
+          {
+            "range": "01:15-01:45",
+            "name": "行动号召与金句总结"
+          },
+          {
+            "name": "互动结语与引导关注",
+            "range": "01:45-02:00"
+          }
+        ]
       },
-      "depends_on": ["node_04_free_tts_engine", "node_05_video_collector"]
+      "next": [
+        "node2_storyboard"
+      ]
     },
     {
-      "id": "node_07_jianying_export",
-      "name": "Jianying Draft Exporter",
-      "type": "python_script",
-      "script_path": "scripts/05_jianying_draft_export.py",
-      "description": "Exports final project to Jianying/CapCut draft for 1-click smart auto-captions and stickers",
-      "inputs": ["node_02_storyboard_engine.outputs.storyboard_json", "node_06_ffmpeg_auto_stitch.outputs.final_video_mp4"],
-      "outputs": ["jianying_draft_directory"],
-      "depends_on": ["node_06_ffmpeg_auto_stitch"]
+      "id": "node2_storyboard",
+      "name": "Node 2：结构化分镜与运镜拆解",
+      "type": "Storyboard Engine",
+      "inputs": [
+        "script.json"
+      ],
+      "outputs": [
+        "storyboard.json"
+      ],
+      "spec": {
+        "shots": "16-20",
+        "duration_sec_each": "4-6",
+        "fields": [
+          "shot_id",
+          "duration",
+          "scene_type",
+          "camera_motion",
+          "visual_prompt",
+          "voiceover_text"
+        ]
+      },
+      "next": [
+        "node3_anchor",
+        "node4_tts"
+      ]
+    },
+    {
+      "id": "node3_anchor",
+      "name": "Node 3：主体一致性与关键帧生成",
+      "type": "Visual Anchor & Keyframes",
+      "inputs": [
+        "storyboard.json",
+        "reference_image"
+      ],
+      "outputs": [
+        "assets/keyframes/shot_01.png"
+      ],
+      "spec": {
+        "rule": "先锁定人物/产品参考图，后续统一走图生视频 I2V 或带参考生视频 R2V",
+        "prompt_template": "画质词 + 服装 + 发型 + 材质 + 光影，固定不变",
+        "free_tools": [
+          "Liblib（免费额度）",
+          "Bing DALL-E 3",
+          "即梦（免费额度）"
+        ],
+        "note": "免费额度会变，用前先核对官网；关键帧只做参考，不当实拍"
+      },
+      "next": [
+        "node5_prompt"
+      ]
+    },
+    {
+      "id": "node4_tts",
+      "name": "Node 4：免费广播级 TTS 配音生成",
+      "type": "Free Audio Engine",
+      "inputs": [
+        "storyboard.json"
+      ],
+      "outputs": [
+        "assets/audios/shot_01.mp3"
+      ],
+      "spec": {
+        "engine": "edge-tts（开源，0成本）",
+        "voices": [
+          "zh-CN-YunxiNeural",
+          "zh-CN-XiaoxiaoNeural"
+        ],
+        "rule": "先生成配音，再按音频实际毫秒时长反向校准视频时间线"
+      },
+      "next": [
+        "node6_stitch"
+      ]
+    },
+    {
+      "id": "node5_prompt",
+      "name": "Node 5：模型提示词编译器",
+      "type": "Prompt Adapter",
+      "inputs": [
+        "storyboard.json",
+        "assets/keyframes/shot_01.png"
+      ],
+      "outputs": [
+        "prompts/kling.json",
+        "prompts/seedream.json",
+        "prompts/minimax.json"
+      ],
+      "spec": {
+        "targets": [
+          "快手可灵 Kling",
+          "豆包即梦 SeaDream",
+          "MiniMax 海螺"
+        ],
+        "fields": [
+          "主体",
+          "光影质感",
+          "运动幅度",
+          "负面过滤词"
+        ],
+        "note": "各家免费额度不同，编译只做提示词适配，不保证额度"
+      },
+      "next": [
+        "node6_stitch"
+      ]
+    },
+    {
+      "id": "node6_stitch",
+      "name": "Node 6：本地 FFmpeg 自动化对齐与混音拼接",
+      "type": "Auto-Stitch Engine",
+      "inputs": [
+        "assets/videos/*.mp4",
+        "assets/audios/*.mp3",
+        "assets/bgm/bgm.mp3"
+      ],
+      "outputs": [
+        "output/final_video_2min.mp4"
+      ],
+      "spec": {
+        "video": "1080x1920, 9:16, 30fps, H.264",
+        "voice_loudness": "-14 LUFS / -14dB，归一化",
+        "bgm": "-22dB，闪避 Ducking",
+        "rule": "按分镜顺序拼接，音频时长为准，视频片段按需截取/补帧"
+      },
+      "next": [
+        "node7_jianying"
+      ]
+    },
+    {
+      "id": "node7_jianying",
+      "name": "Node 7：剪映工程草稿导出与字幕包装",
+      "type": "Jianying Draft Exporter",
+      "inputs": [
+        "output/final_video_2min.mp4",
+        "storyboard.json"
+      ],
+      "outputs": [
+        "draft_content.json"
+      ],
+      "spec": {
+        "note": "生成剪映电脑版工程草稿，打开即可用智能字幕/花字识别，无需手动打字对轴；草稿格式以剪映当前版本为准，导入前先备份"
+      },
+      "next": []
     }
-  ]
+  ],
+  "edges": [
+    [
+      "node1_script",
+      "node2_storyboard"
+    ],
+    [
+      "node2_storyboard",
+      "node3_anchor"
+    ],
+    [
+      "node2_storyboard",
+      "node4_tts"
+    ],
+    [
+      "node3_anchor",
+      "node5_prompt"
+    ],
+    [
+      "node4_tts",
+      "node6_stitch"
+    ],
+    [
+      "node5_prompt",
+      "node6_stitch"
+    ],
+    [
+      "node6_stitch",
+      "node7_jianying"
+    ]
+  ],
+  "github_note": "GitHub仓库 fanpeter853-glitch/ai-video-pipeline（Public，main），已推送。主示例是 Peter 真实版 example_2min/（先做最小的一步，462字、20镜）；通用备选示例保留在仓库 example_2min/sample_script_2min.md 和 sample_storyboard.json（18镜）。分镜台词同时写 voiceover_text 和 voiceover 两个字段，内容一致。"
 }
