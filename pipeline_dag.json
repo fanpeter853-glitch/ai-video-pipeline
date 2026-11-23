@@ -1,0 +1,102 @@
+{
+  "name": "ai-video-pipeline",
+  "version": "1.0.0",
+  "description": "100% Free Modular Pipeline for 2-Minute AI Video Generation (Muse & GitHub Integration)",
+  "metadata": {
+    "target_duration_seconds": 120,
+    "target_shots_count": 18,
+    "resolution": "1080x1920",
+    "aspect_ratio": "9:16",
+    "fps": 30,
+    "cost_tier": "100% Free / Zero API Cost",
+    "author": "fanpeter853-glitch"
+  },
+  "nodes": [
+    {
+      "id": "node_01_script_engine",
+      "name": "2-Minute Script Engine",
+      "type": "llm_text_generation",
+      "description": "Generates 400-500 words structured script with emotional rhythm and 3s hook",
+      "inputs": ["theme", "target_audience", "tone_style"],
+      "outputs": ["script_text", "script_metadata"],
+      "config": {
+        "target_word_count": 480,
+        "target_duration": 120,
+        "hook_window": "0-3s"
+      }
+    },
+    {
+      "id": "node_02_storyboard_engine",
+      "name": "Storyboard & Shot Breakdown Engine",
+      "type": "python_script",
+      "script_path": "scripts/01_script_to_storyboard.py",
+      "description": "Splits 2-minute script into 16-20 cohesive shots (4-6s per shot)",
+      "inputs": ["node_01_script_engine.outputs.script_text"],
+      "outputs": ["storyboard_json"],
+      "depends_on": ["node_01_script_engine"]
+    },
+    {
+      "id": "node_03_prompt_compiler",
+      "name": "Multi-Model Prompt Adapter",
+      "type": "python_script",
+      "script_path": "scripts/02_prompt_compiler.py",
+      "description": "Compiles storyboard shots into optimized prompts for Kling, Jimeng, and MiniMax",
+      "inputs": ["node_02_storyboard_engine.outputs.storyboard_json"],
+      "outputs": ["compiled_prompts"],
+      "depends_on": ["node_02_storyboard_engine"]
+    },
+    {
+      "id": "node_04_free_tts_engine",
+      "name": "Free Broadcast TTS Audio Engine",
+      "type": "python_script",
+      "script_path": "scripts/03_free_tts_generator.py",
+      "description": "Generates broadcast-grade voiceover files using Microsoft Edge-TTS (0 cost, no API key)",
+      "inputs": ["node_02_storyboard_engine.outputs.storyboard_json"],
+      "outputs": ["audio_files", "timeline_durations"],
+      "config": {
+        "voice": "zh-CN-YunxiNeural",
+        "rate": "+0%",
+        "volume": "+0%"
+      },
+      "depends_on": ["node_02_storyboard_engine"]
+    },
+    {
+      "id": "node_05_video_collector",
+      "name": "Video Segment Collector",
+      "type": "manual_or_api_ingest",
+      "description": "Ingests generated 4-6s video clips from free daily quota tools",
+      "inputs": ["node_03_prompt_compiler.outputs.compiled_prompts"],
+      "outputs": ["video_clip_paths"],
+      "depends_on": ["node_03_prompt_compiler"]
+    },
+    {
+      "id": "node_06_ffmpeg_auto_stitch",
+      "name": "FFmpeg Auto-Alignment & Mix Engine",
+      "type": "python_script",
+      "script_path": "scripts/04_ffmpeg_auto_stitch.py",
+      "description": "Auto-trims, normalizes audio to -14dB, ducks BGM to -22dB, and renders seamless 1080p video",
+      "inputs": [
+        "node_04_free_tts_engine.outputs.audio_files",
+        "node_05_video_collector.outputs.video_clip_paths"
+      ],
+      "outputs": ["final_video_mp4"],
+      "config": {
+        "voice_lufs": -14.0,
+        "bgm_volume_db": -22.0,
+        "output_codec": "libx264",
+        "audio_codec": "aac"
+      },
+      "depends_on": ["node_04_free_tts_engine", "node_05_video_collector"]
+    },
+    {
+      "id": "node_07_jianying_export",
+      "name": "Jianying Draft Exporter",
+      "type": "python_script",
+      "script_path": "scripts/05_jianying_draft_export.py",
+      "description": "Exports final project to Jianying/CapCut draft for 1-click smart auto-captions and stickers",
+      "inputs": ["node_02_storyboard_engine.outputs.storyboard_json", "node_06_ffmpeg_auto_stitch.outputs.final_video_mp4"],
+      "outputs": ["jianying_draft_directory"],
+      "depends_on": ["node_06_ffmpeg_auto_stitch"]
+    }
+  ]
+}
