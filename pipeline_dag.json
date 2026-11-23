@@ -117,7 +117,7 @@
     },
     {
       "id": "node4_tts",
-      "name": "配音（Muse 自带替换版，edge-tts 备选）",
+      "name": "配音（VoiceStudio 本地克隆音色，正式版）",
       "type": "Free Audio Engine",
       "inputs": [
         "storyboard.json"
@@ -136,8 +136,8 @@
       "next": [
         "node6_stitch"
       ],
-      "description": "原方案 edge-tts（zh-CN-YunxiNeural）在虚拟机里连不上 speech.platform.bing.com（SSL 报错）。已替换为 tts_muse.py（Muse 自带配音，已实测 20 段、总 96.6 秒），接口与 tts_edge.py 一致，同样输出 shot_XX.mp3 和 durations.json；要 Yunxi 音色在自己电脑上跑 tts_edge.py；Peter 自己配音优先，录好后用 tts_muse.py --probe-only 生成 durations.json。",
-      "script": "scripts/tts_muse.py（替换），scripts/tts_edge.py（备选）"
+      "description": "Node 4 正式版是 VoiceStudio 本地配音 scripts/tts_voicestudio.py（2026-11-24 接入，Peter 确认）：开源本地版 ElevenLabs，免费无账号，在自己电脑上跑，POST http://localhost:3900/v1/audio/speech，voice=Peter 自己的克隆声音档案，中文优先 CosyVoice 3 引擎。edge-tts（虚拟机连不上微软端点）和 Muse 自带配音（音色不是 Peter 的）降为备选。只克隆 Peter 自己的声音，不要克隆别人的声音。",
+      "script": "scripts/tts_voicestudio.py（正式），scripts/tts_muse.py / scripts/tts_edge.py（备选）"
     },
     {
       "id": "node5_prompt",

@@ -64,6 +64,31 @@ python3 scripts/write_script.py --topic "先做最小的一步" \
 没给的内容留 `[待填]`；写完读一遍改口语，再跑 Node 2 拆分镜。
 想让 Muse 直接帮你写一版，在聊天里说一声就行。
 
+## Node 4 正式版：VoiceStudio 本地克隆配音（2026-11-24 接入，Peter 确认）
+
+VoiceStudio 是开源本地版 ElevenLabs（`debpalash/VoiceStudio`，AGPL-3.0），
+免费、无账号、无订阅，全部在自己电脑上跑，是 Node 4 的首选。
+
+先在你自己的电脑上做一次：
+
+1. 装 VoiceStudio：去 [最新 release](https://github.com/debpalash/VoiceStudio/releases/latest)
+   下 Windows MSI / macOS DMG / Linux AppImage；或 Docker
+   `docker run -d -p 127.0.0.1:3900:3900 -v omnivoice-data:/app/omnivoice_data --name voicestudio palashdeb/omnivoice-studio:stable`
+2. 打开 VoiceStudio → Voice cloning，录一段 5~15 秒干净的你自己的声音，
+   建一个声音档案，记下名字，比如 `Peter`。只克隆你自己的声音。
+3. 中文优先选 CosyVoice 3 引擎；默认引擎 OmniVoice 也能用。
+4. 启动后确认 `http://localhost:3900` 能打开。
+
+然后跑：
+
+```bash
+python3 scripts/tts_voicestudio.py --storyboard example_2min/storyboard.json \
+  --out example_2min/assets/audios --voice Peter --model cosyvoice3
+```
+
+它调本地 OpenAI 兼容接口 `POST http://localhost:3900/v1/audio/speech`，
+每镜出 `shot_XX.mp3`，再写 `durations.json`。edge-tts 和 Muse 自带配音降为备选。
+
 ## 替换说明（2026-11-24，Node 3 和 Node 4 已替换，实测通过）
 
 - **Node 3 视觉锚点**：原方案 Liblib / Bing DALL·E 3 / 即梦手动生关键帧，
