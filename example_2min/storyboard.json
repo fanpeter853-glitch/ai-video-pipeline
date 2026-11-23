@@ -2,204 +2,226 @@
   "shots": [
     {
       "shot_id": "shot_01",
-      "duration": 6,
+      "duration": 8.71,
       "scene_type": "特写",
       "camera_motion": "推",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "晚上十一点，客户问我，瓷砖胶多少钱一袋，我盯着屏幕三分钟，没敢回。不是我不想回，",
-      "voiceover": "晚上十一点，客户问我，瓷砖胶多少钱一袋，我盯着屏幕三分钟，没敢回。不是我不想回，"
+      "voiceover": "晚上十一点，客户问我，瓷砖胶多少钱一袋，我盯着屏幕三分钟，没敢回。不是我不想回，",
+      "start_time": 0
     },
     {
       "shot_id": "shot_02",
-      "duration": 6,
+      "duration": 4.2,
       "scene_type": "近景",
       "camera_motion": "静止",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "是我成本还没对齐，怕说错一个数，就丢了这个客户。",
-      "voiceover": "是我成本还没对齐，怕说错一个数，就丢了这个客户。"
+      "voiceover": "是我成本还没对齐，怕说错一个数，就丢了这个客户。",
+      "start_time": 8.71
     },
     {
       "shot_id": "shot_03",
-      "duration": 6,
+      "duration": 4.25,
       "scene_type": "中景",
       "camera_motion": "摇",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "那一刻我才明白，我不是缺准备，我是怕丢脸。",
-      "voiceover": "那一刻我才明白，我不是缺准备，我是怕丢脸。"
+      "voiceover": "那一刻我才明白，我不是缺准备，我是怕丢脸。",
+      "start_time": 12.91
     },
     {
       "shot_id": "shot_04",
-      "duration": 6,
+      "duration": 3.72,
       "scene_type": "近景",
       "camera_motion": "移",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "我以前总想一次做到完美，结果就是什么都不敢做，",
-      "voiceover": "我以前总想一次做到完美，结果就是什么都不敢做，"
+      "voiceover": "我以前总想一次做到完美，结果就是什么都不敢做，",
+      "start_time": 17.16
     },
     {
       "shot_id": "shot_05",
-      "duration": 6,
+      "duration": 4.37,
       "scene_type": "中景",
       "camera_motion": "推",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "越等越不敢开始。宿舍里没人教我这些，都是我一边上课，",
-      "voiceover": "越等越不敢开始。宿舍里没人教我这些，都是我一边上课，"
+      "voiceover": "越等越不敢开始。宿舍里没人教我这些，都是我一边上课，",
+      "start_time": 20.88
     },
     {
       "shot_id": "shot_06",
-      "duration": 6,
+      "duration": 3.36,
       "scene_type": "特写",
       "camera_motion": "升降",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "一边在客户消息里学会的。后来我换了一个办法，",
-      "voiceover": "一边在客户消息里学会的。后来我换了一个办法，"
+      "voiceover": "一边在客户消息里学会的。后来我换了一个办法，",
+      "start_time": 25.25
     },
     {
       "shot_id": "shot_07",
-      "duration": 6,
+      "duration": 5.64,
       "scene_type": "特写",
       "camera_motion": "推",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "把不敢做的事，拆成最小的一步。先不报价，先回一句话，",
-      "voiceover": "把不敢做的事，拆成最小的一步。先不报价，先回一句话，"
+      "voiceover": "把不敢做的事，拆成最小的一步。先不报价，先回一句话，",
+      "start_time": 28.61
     },
     {
       "shot_id": "shot_08",
-      "duration": 6,
+      "duration": 4.75,
       "scene_type": "近景",
       "camera_motion": "静止",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "我去核对一下，明天给你准确价格。第二天，我问了工厂，",
-      "voiceover": "我去核对一下，明天给你准确价格。第二天，我问了工厂，"
+      "voiceover": "我去核对一下，明天给你准确价格。第二天，我问了工厂，",
+      "start_time": 34.25
     },
     {
       "shot_id": "shot_09",
-      "duration": 6,
+      "duration": 4.39,
       "scene_type": "中景",
       "camera_motion": "摇",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "拿到了真实成本。第三天，我才报了价。价格报出去之后，",
-      "voiceover": "拿到了真实成本。第三天，我才报了价。价格报出去之后，"
+      "voiceover": "拿到了真实成本。第三天，我才报了价。价格报出去之后，",
+      "start_time": 39.0
     },
     {
       "shot_id": "shot_10",
-      "duration": 6,
+      "duration": 4.25,
       "scene_type": "近景",
       "camera_motion": "移",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "客户没有走，反而多问了我一句，你们还有别的产品吗。",
-      "voiceover": "客户没有走，反而多问了我一句，你们还有别的产品吗。"
+      "voiceover": "客户没有走，反而多问了我一句，你们还有别的产品吗。",
+      "start_time": 43.39
     },
     {
       "shot_id": "shot_11",
-      "duration": 6,
+      "duration": 3.79,
       "scene_type": "中景",
       "camera_motion": "推",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "这件事让我明白一个道理，客户要的不是完美答案，",
-      "voiceover": "这件事让我明白一个道理，客户要的不是完美答案，"
+      "voiceover": "这件事让我明白一个道理，客户要的不是完美答案，",
+      "start_time": 47.64
     },
     {
       "shot_id": "shot_12",
-      "duration": 6,
+      "duration": 4.44,
       "scene_type": "特写",
       "camera_motion": "升降",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "是一个真实的回应。我现在做事就三条，第一，",
-      "voiceover": "是一个真实的回应。我现在做事就三条，第一，"
+      "voiceover": "是一个真实的回应。我现在做事就三条，第一，",
+      "start_time": 51.43
     },
     {
       "shot_id": "shot_13",
-      "duration": 6,
+      "duration": 3.96,
       "scene_type": "特写",
       "camera_motion": "推",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "先问工厂要真实成本，不自己编一个数。第二，",
-      "voiceover": "先问工厂要真实成本，不自己编一个数。第二，"
+      "voiceover": "先问工厂要真实成本，不自己编一个数。第二，",
+      "start_time": 55.87
     },
     {
       "shot_id": "shot_14",
-      "duration": 6,
+      "duration": 4.68,
       "scene_type": "近景",
       "camera_motion": "静止",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "先给一个真实的回应，不装懂。第三，能发的先发，",
-      "voiceover": "先给一个真实的回应，不装懂。第三，能发的先发，"
+      "voiceover": "先给一个真实的回应，不装懂。第三，能发的先发，",
+      "start_time": 59.83
     },
     {
       "shot_id": "shot_15",
-      "duration": 6,
+      "duration": 4.2,
       "scene_type": "中景",
       "camera_motion": "摇",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "拿到反馈再改一版。把大任务拆小，把第一步做小，",
-      "voiceover": "拿到反馈再改一版。把大任务拆小，把第一步做小，"
+      "voiceover": "拿到反馈再改一版。把大任务拆小，把第一步做小，",
+      "start_time": 64.51
     },
     {
       "shot_id": "shot_16",
-      "duration": 6,
+      "duration": 2.88,
       "scene_type": "近景",
       "camera_motion": "移",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "先发一个六十分的版本，再按反馈改一版，",
-      "voiceover": "先发一个六十分的版本，再按反馈改一版，"
+      "voiceover": "先发一个六十分的版本，再按反馈改一版，",
+      "start_time": 68.71
     },
     {
       "shot_id": "shot_17",
-      "duration": 6,
+      "duration": 8.21,
       "scene_type": "中景",
       "camera_motion": "推",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "比在原地等一百分有用得多。所以如果你现在也卡住了，别问自己准备好了没有，先问自己，",
-      "voiceover": "比在原地等一百分有用得多。所以如果你现在也卡住了，别问自己准备好了没有，先问自己，"
+      "voiceover": "比在原地等一百分有用得多。所以如果你现在也卡住了，别问自己准备好了没有，先问自己，",
+      "start_time": 71.59
     },
     {
       "shot_id": "shot_18",
-      "duration": 6,
+      "duration": 5.71,
       "scene_type": "特写",
       "camera_motion": "升降",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "今天能做的最小一步是什么。能发一句消息，就先发一句。",
-      "voiceover": "今天能做的最小一步是什么。能发一句消息，就先发一句。"
+      "voiceover": "今天能做的最小一步是什么。能发一句消息，就先发一句。",
+      "start_time": 79.8
     },
     {
       "shot_id": "shot_19",
-      "duration": 6,
+      "duration": 5.83,
       "scene_type": "特写",
       "camera_motion": "推",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "能问一个问题，就先问一个。创业不是等准备好，是先把最小的一步做出来。",
-      "voiceover": "能问一个问题，就先问一个。创业不是等准备好，是先把最小的一步做出来。"
+      "voiceover": "能问一个问题，就先问一个。创业不是等准备好，是先把最小的一步做出来。",
+      "start_time": 85.51
     },
     {
       "shot_id": "shot_20",
-      "duration": 6,
+      "duration": 5.23,
       "scene_type": "近景",
       "camera_motion": "静止",
       "visual_prompt": "Realistic dorm desk scene, 19-year-old Chinese university student in casual grey hoodie, natural light, vertical 9:16. / 写实宿舍书桌，19岁大二男生灰色卫衣，自然光，竖屏。",
       "visual_prompt_cn": "写实宿舍书桌，19岁大二男生，灰色卫衣，自然光，竖屏9:16",
       "voiceover_text": "你现在最不敢做的那一步是什么，评论区告诉我，我下条视频就讲你那一步怎么拆。",
-      "voiceover": "你现在最不敢做的那一步是什么，评论区告诉我，我下条视频就讲你那一步怎么拆。"
+      "voiceover": "你现在最不敢做的那一步是什么，评论区告诉我，我下条视频就讲你那一步怎么拆。",
+      "start_time": 91.34
     }
   ],
-  "total_shots": 20
+  "total_shots": 20,
+  "total_duration_s": 96.6,
+  "note": "Durations recalibrated 2026-11-24 from actual Muse TTS (edge-tts failed in VM: SSL to speech.platform.bing.com). Total 96.6s at this TTS speed, faster than 240 chars/min estimate."
 }

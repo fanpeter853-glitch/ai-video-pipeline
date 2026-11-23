@@ -44,3 +44,17 @@ https://github.com/fanpeter853-glitch/ai-video-pipeline
 
 字段统一：分镜台词同时写 `voiceover_text` 和 `voiceover` 两个字段，
 本地脚本用 `voiceover_text`，仓库另一套编号脚本用 `voiceover`，两者内容一致。
+
+## 替换说明（2026-11-24，Node 3 和 Node 4 已替换，实测通过）
+
+- **Node 3 视觉锚点**：原方案 Liblib / Bing DALL·E 3 / 即梦手动生关键帧，
+  已替换为 `scripts/anchor_muse.py`。它按分镜生成 20 条统一锚点提示词
+  （Peter 本人照片、灰色休闲卫衣、宿舍书桌、写实 B-roll、无字幕、屏幕虚化），
+  输出 `example_2min/assets/anchor_prompts.json`；Muse 按提示词逐镜生成竖屏视频，
+  放到 `example_2min/assets/videos/shot_XX.mp4`。
+- **Node 4 配音**：原方案 edge-tts（zh-CN-YunxiNeural）在虚拟机里连不上
+  `speech.platform.bing.com`（SSL 报错），已替换为 `scripts/tts_muse.py`
+  （Muse 自带配音，接口与 `tts_edge.py` 一致，同样输出 `shot_XX.mp3` 和
+  `durations.json`）。实测：20 段，总 96.6 秒。要 Yunxi 音色，在自己电脑上跑
+  `tts_edge.py`；Peter 自己配音优先，录好后用 `tts_muse.py --probe-only`
+  生成 `durations.json`。
