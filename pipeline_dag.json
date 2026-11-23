@@ -57,7 +57,9 @@
       },
       "next": [
         "node2_storyboard"
-      ]
+      ],
+      "description": "剧本起草器 scripts/write_script.py（2026-11-24 新增）：给主题 + 钩子/痛点/方法/金句/互动五个关键点，按 A+B 路线和固定节拍拼成 400~500 字、带 [mm:ss-mm:ss] 时间轴的草稿，自动数字数，不够/超了会提示。注意：脚本只做结构拼接和字数校验，不编数字和经历，没给的内容留 [待填]；写完读一遍改口语，再跑 Node 2 拆分镜。想让 Muse 直接写一版，在聊天里说一声。",
+      "script": "scripts/write_script.py"
     },
     {
       "id": "node2_storyboard",

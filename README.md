@@ -45,6 +45,25 @@ https://github.com/fanpeter853-glitch/ai-video-pipeline
 字段统一：分镜台词同时写 `voiceover_text` 和 `voiceover` 两个字段，
 本地脚本用 `voiceover_text`，仓库另一套编号脚本用 `voiceover`，两者内容一致。
 
+## Node 1 补齐：写剧本（2026-11-24 新增）
+
+原来 Node 1 只有拆分镜，不会写剧本。已加 `scripts/write_script.py`：
+
+```bash
+python3 scripts/write_script.py --topic "先做最小的一步" \
+  --hook "晚上十一点，客户问我，瓷砖胶多少钱一袋，我盯着屏幕三分钟，没敢回" \
+  --pain "成本还没对齐，怕说错一个数就丢了客户，不是缺准备，是怕丢脸" \
+  --method "拆成最小的一步，先回一句话，明天给准确价格；第二天问工厂拿真实成本，第三天报价" \
+  --golden "创业不是等准备好，是先把最小的一步做出来" \
+  --cta "你现在最不敢做的那一步是什么，评论区告诉我" \
+  --out example_2min/script.md
+```
+
+它按 A+B 路线和固定节拍拼成 400~500 字、带时间轴的草稿，自动数字数，
+不够或超了会提示。注意：它只做结构拼接和字数校验，不编数字和经历，
+没给的内容留 `[待填]`；写完读一遍改口语，再跑 Node 2 拆分镜。
+想让 Muse 直接帮你写一版，在聊天里说一声就行。
+
 ## 替换说明（2026-11-24，Node 3 和 Node 4 已替换，实测通过）
 
 - **Node 3 视觉锚点**：原方案 Liblib / Bing DALL·E 3 / 即梦手动生关键帧，
