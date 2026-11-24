@@ -112,7 +112,7 @@
       "next": [
         "node5_prompt"
       ],
-      "description": "原方案 Liblib / Bing DALL·E 3 / 即梦手动生关键帧，已替换为 Muse 自带：anchor_muse.py 生成统一锚点提示词（Peter 照片、灰色卫衣、宿舍书桌、写实 B-roll、无字幕虚化屏幕），Muse 逐镜生成竖屏视频，放到 assets/videos/shot_XX.mp4。",
+      "description": "原方案 Liblib / Bing DALL·E 3 / 即梦手动生关键帧，已替换为 Muse 自带：anchor_muse.py 生成统一锚点提示词（Peter 照片、灰色卫衣、宿舍书桌、写实 B-roll、无字幕虚化屏幕），Muse 逐镜生成竖屏视频，放到 assets/videos/shot_XX.mp4。首帧锁定法 v2（2026-11-24，Peter 确认）：每段只传上一段尾帧图当首帧参考，不用 snapshot 链式续生成；首帧必须和图一模一样、先定住 1 秒再动；机位锁死右侧中近景三脚架固定机位；尾帧用 scripts/extract_frames.py 抽；接缝用 scripts/check_continuity.py 验。实测主号 6 段 v2 的 1-2、3-4、4-5、5-6 接缝基本是同一帧，2-3 有轻微错位，第 4 段内部漂移；生成模型保证不了像素级完美，剪辑定帧/交叉淡化兜底。",
       "script": "scripts/anchor_muse.py"
     },
     {
@@ -186,7 +186,8 @@
         "video": "1080x1920, 9:16, 30fps, H.264",
         "voice_loudness": "-14 LUFS / -14dB，归一化",
         "bgm": "-22dB，闪避 Ducking",
-        "rule": "按分镜顺序拼接，音频时长为准，视频片段按需截取/补帧"
+        "rule": "按分镜顺序拼接，音频时长为准，视频片段按需截取/补帧",
+        "xfade_option": "scripts/stitch_xfade.py：段间 0.5 秒交叉淡化 + 模糊背景填充到 1080x1920 + 全部静音，6 段 60 秒拼完 57.5 秒；接缝卡顿时用它兜底，首帧锁定法 v2 也保证不了像素级完美"
       },
       "next": [
         "node7_jianying"
